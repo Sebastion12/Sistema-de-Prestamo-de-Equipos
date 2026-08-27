@@ -1,5 +1,6 @@
 
 from menus import menu_encargado, menu_solicitante
+from services.auth_service import login
 
 def pantalla_login():
     correo = input("Ingrese su correo electrónico: ").strip()
