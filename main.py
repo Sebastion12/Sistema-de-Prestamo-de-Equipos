@@ -1,4 +1,5 @@
 
+from menus import menu_encargado, menu_solicitante
 
 def pantalla_login():
     correo = input("Ingrese su correo electrónico: ").strip()
