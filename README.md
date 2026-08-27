@@ -5,7 +5,7 @@ Para ejecutar el programa
 
 Ubicarse en el directorio raíz:
 ```
-cd ./tarea_pruebas_sw
+cd ./Sistema-de-Prestamo-de-Equipos
 ```
 
 ## Crear el entorno virtual
