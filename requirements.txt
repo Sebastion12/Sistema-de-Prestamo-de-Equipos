@@ -1,3 +1,4 @@
 bcrypt
 tabulate
 pytest
+sentry-sdk
