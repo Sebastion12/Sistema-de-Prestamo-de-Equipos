@@ -20,7 +20,7 @@ def _equipos_vacios() -> bool:
 def cargar_datos_demo():
     initialize_database()
     if _base_vacia():
-        usuarios_service.crear_usuario("Admin", "admin.encargado@lab.cl", "encargado123", "encargado")
+        usuarios_service.crear_usuario("Admin", "admin.encargado@usm.cl", "encargado123", "encargado")
         usuarios_service.crear_usuario("user", "user.solicitante@usm.cl", "solicitante123", "solicitante")
 
     if _equipos_vacios():
@@ -30,7 +30,7 @@ def cargar_datos_demo():
         equipos_service.crear_equipo("CM-001", "Cámara Canon EOS", "Cámara")
     
     print("Datos de demostración cargados:")
-    print("  Encargado -> correo: admin.encargado@lab.cl | password: encargado123")
+    print("  Encargado -> correo: admin.encargado@usm.cl | password: encargado123")
     print("  Solicitante -> correo: user.solicitante@usm.cl | password: solicitante123")
 
 
