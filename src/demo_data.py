@@ -28,6 +28,8 @@ def cargar_datos_demo():
         equipos_service.crear_equipo("NB-002", "Notebook Lenovo ThinkPad", "Notebook")
         equipos_service.crear_equipo("PR-001", "Proyector Epson", "Proyector")
         equipos_service.crear_equipo("CM-001", "Cámara Canon EOS", "Cámara")
+        equipos_service.crear_equipo("CM-002", "Cámara Canon HD", "Cámara")
+        equipos_service.crear_equipo("CM-003", "Cámara Canon XD", "Cámara")
     
     print("Datos de demostración cargados:")
     print("  Encargado -> correo: admin.encargado@usm.cl | password: encargado123")
