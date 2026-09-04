@@ -1,5 +1,3 @@
-
-import sentry_sdk
 from src.db import initialize_database
 from src.auth import login
 from src.menu_encargado import menu_encargado

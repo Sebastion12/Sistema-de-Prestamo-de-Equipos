@@ -63,7 +63,6 @@ def _registrar_devolucion():
         return
     if prestamo_id == 0: return
     
-    # NUEVO: Ciclo de validación estricta para el estado de recepción
     estados_permitidos = ["operativo", "dañado", "fuera de servicio"]
     estado_recepcion = ""
     while estado_recepcion not in estados_permitidos:

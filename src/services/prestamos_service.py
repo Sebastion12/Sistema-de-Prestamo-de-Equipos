@@ -1,5 +1,5 @@
 import sqlite3
-from datetime import datetime, timedelta, time
+from datetime import datetime, timedelta
 from src.db import get_db_connection
 from src.logging_config import get_logger
 
@@ -13,17 +13,12 @@ TRANSICIONES_VALIDAS = {
     "ENTREGADA": {"DEVUELTA"},
     "ATRASADA": {"DEVUELTA"},
 }
-HORA_RETIRO = time(9, 0)
 
 def _calcular_dias_habiles(fecha_inicio: datetime, fecha_fin: datetime) -> int:
-    # Guardia contra rangos absurdos antes de iterar día a día (el bug #3 que vimos antes)
-    if (fecha_fin - fecha_inicio).days > 60:
-        return (fecha_fin - fecha_inicio).days  # ya es > 7 hábiles seguro; se rechaza más abajo
-
     dias = 0
     actual = fecha_inicio
     while actual <= fecha_fin:
-        if actual.weekday() < 5 and actual.strftime("%Y-%m-%d"):
+        if actual.weekday() < 5: # 0-4 son Lunes a Viernes (días hábiles)
             dias += 1
         actual += timedelta(days=1)
     return dias
@@ -47,9 +42,8 @@ def crear_solicitud(usuario_id: int, equipo_id: int, fecha_inicio_str: str, fech
         if fin < inicio:
             return False, "La fecha de fin debe ser posterior o igual a la fecha de inicio."
             
-        inicio_con_hora = datetime.combine(inicio.date(), HORA_RETIRO)
-        if inicio_con_hora < datetime.now() + timedelta(hours=24):
-            return False, "Las solicitudes deben hacerse con al menos 24 horas de anticipación a la hora de retiro (09:00)."
+        if inicio < datetime.now() + timedelta(hours=24):
+            return False, "Las solicitudes deben hacerse con al menos 24 horas de anticipación."
             
         # Regla 2: Máximo 7 días hábiles
         if _calcular_dias_habiles(inicio, fin) > 7:
