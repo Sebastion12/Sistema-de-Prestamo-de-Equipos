@@ -13,8 +13,6 @@ def crear_usuario(nombre: str, correo: str, password: str, rol: str) -> tuple[bo
         return False, "Rol inválido. Debe ser 'solicitante' o 'encargado'."
     if not nombre.strip() or not correo.strip() or not password:
         return False, "Nombre, correo y contraseña son obligatorios."
-    if not correo.strip().lower().endswith("@usm.cl"):
-        return False, f"El correo debe pertenecer al dominio institucional @usm.cl"
 
     conn = get_db_connection()
     try:
