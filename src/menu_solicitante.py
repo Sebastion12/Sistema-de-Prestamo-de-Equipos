@@ -42,14 +42,14 @@ def _crear_solicitud(usuario):
     ok, mensaje = prestamos_service.crear_solicitud(
         usuario["id"], equipo_id, fecha_inicio, fecha_fin, ubicacion
     )
-    # La solicitud se evalúa de inmediato (HD2): el resultado puede ser
-    # APROBADA o RECHAZADA automáticamente, no queda "pendiente".
+    # La solicitud se evalúa de inmediato (HD2): el resultado puede quedar "PENDIENTE" o "RECHAZADA" automáticamente
     print(("✔ " if ok else "✘ ") + mensaje)
 
 
 def _cancelar_solicitud(usuario):
     mis_prestamos = prestamos_service.listar_prestamos(usuario_id=usuario["id"])
-    activos = [p for p in mis_prestamos if (p["estado"] == "APROBADA" or p["estado"] == "PENDIENTE")]
+    activos = [p for p in mis_prestamos if p["estado"] in ("APROBADA", "PENDIENTE")]
+
     if not activos:
         print("No tiene solicitudes que se puedan cancelar.")
         return
